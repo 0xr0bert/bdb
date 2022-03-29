@@ -14,7 +14,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 #include "bdb/bdb.hpp"
-#include "bdb/bdb_config.h"
 
 #include <gtest/gtest.h>
 

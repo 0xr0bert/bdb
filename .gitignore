@@ -33,3 +33,6 @@
 
 build/
 .cache/
+builddir/
+subprojects/googletest-release-1.10.0/
+packagecache/
