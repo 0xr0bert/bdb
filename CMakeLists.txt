@@ -6,15 +6,14 @@ project(BDB VERSION 0.0.1 DESCRIPTION "Behaviour-Derived Beliefs")
 
 add_library(bdb SHARED
     src/bdb.cpp
+    src/behaviour.cpp
 )
 configure_file(include/bdb/bdb_config.h.in include/bdb/bdb_config.h)
 target_include_directories(bdb PRIVATE
     ${PROJECT_BINARY_DIR}/include
 )
 target_include_directories(bdb PUBLIC include)
-
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
+target_compile_features(bdb PRIVATE cxx_std_20)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -28,13 +27,16 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 add_executable(bdb_test
     test/bdb.cpp
+    test/behaviour.cpp
+    test/behaviour.hpp
 )
 target_link_libraries(
     bdb_test
     gtest_main
     bdb
 )
-target_include_directories(bdb_test PRIVATE include ${PROJECT_BINARY_DIR}/include)
+target_include_directories(bdb_test PUBLIC include ${PROJECT_BINARY_DIR}/include)
+target_compile_features(bdb_test PRIVATE cxx_std_20)
 
 include(GoogleTest)
 gtest_discover_tests(bdb_test)
