@@ -12,6 +12,6 @@ bdb_test = executable(
     bdb_test_srcs,
     dependencies : [gtest_main_dep, gmock_dep],
     include_directories : inc,
-    link_with : bdb_a
+    link_with : bdb
 )
 test('gtest test', bdb_test)
