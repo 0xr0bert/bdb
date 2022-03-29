@@ -57,6 +57,14 @@ public:
    */
   IBehaviour(const std::string name, const boost::uuids::uuid uuid);
 };
+
+/**
+ * @brief A Behaviour in a simulation.
+ */
+class Behaviour : public IBehaviour {
+public:
+  using IBehaviour::IBehaviour;
+};
 } // namespace BDB
 
 #endif // BDB_BEHAVIOUR_H
