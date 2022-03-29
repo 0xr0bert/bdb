@@ -16,4 +16,13 @@
 
 #include "bdb/behaviour.hpp"
 
-BDB::IBehaviour::IBehaviour(const std::string name) : name(name){};
+#include <boost/uuid/random_generator.hpp>
+#include <boost/uuid/uuid_generators.hpp>
+
+BDB::IBehaviour::IBehaviour(const std::string name)
+    : BDB::IBehaviour::IBehaviour(name,
+                                  boost::uuids::random_generator_mt19937()()){};
+
+BDB::IBehaviour::IBehaviour(const std::string name,
+                            const boost::uuids::uuid uuid)
+    : name(name), uuid(uuid) {}

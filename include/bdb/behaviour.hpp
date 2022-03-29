@@ -16,6 +16,7 @@
 #ifndef BDB_BEHAVIOUR_H
 #define BDB_BEHAVIOUR_H
 
+#include <boost/uuid/uuid.hpp>
 #include <string>
 
 namespace BDB {
@@ -30,6 +31,11 @@ public:
   const std::string name;
 
   /**
+   * @brief The UUID of the behaviour.
+   */
+  const boost::uuids::uuid uuid;
+
+  /**
    * @brief Destroy the IBehaviour object.
    */
   virtual ~IBehaviour(){};
@@ -37,9 +43,19 @@ public:
   /**
    * @brief Construct a new IBehaviour object.
    *
+   * This randomly generates a UUIDv4.
+   *
    * @param name The name of the behaviour.
    */
   IBehaviour(const std::string name);
+
+  /**
+   * @brief Construct a new IBehaviour object.
+   *
+   * @param name The name of the behaviour.
+   * @param uuid The UUID of the behaviour.
+   */
+  IBehaviour(const std::string name, const boost::uuids::uuid uuid);
 };
 } // namespace BDB
 

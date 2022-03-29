@@ -4,6 +4,11 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 project(BDB VERSION 0.0.1 DESCRIPTION "Behaviour-Derived Beliefs")
 
+find_package(Boost
+    1.70
+    REQUIRED
+)
+
 add_library(bdb SHARED
     src/bdb.cpp
     src/behaviour.cpp
@@ -12,7 +17,10 @@ configure_file(include/bdb/bdb_config.h.in include/bdb/bdb_config.h)
 target_include_directories(bdb PRIVATE
     ${PROJECT_BINARY_DIR}/include
 )
-target_include_directories(bdb PUBLIC include)
+target_include_directories(bdb PUBLIC
+    include
+    ${Boost_INCLUDE_DIRS}
+)
 target_compile_features(bdb PRIVATE cxx_std_20)
 
 include(FetchContent)
@@ -35,7 +43,11 @@ target_link_libraries(
     gtest_main
     bdb
 )
-target_include_directories(bdb_test PUBLIC include ${PROJECT_BINARY_DIR}/include)
+target_include_directories(bdb_test PUBLIC
+    include
+    ${PROJECT_BINARY_DIR}/include
+    ${Boost_INCLUDE_DIRS}
+    )
 target_compile_features(bdb_test PRIVATE cxx_std_20)
 
 include(GoogleTest)
