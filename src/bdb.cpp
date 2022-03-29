@@ -14,5 +14,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 #include "bdb/bdb.hpp"
+#include "bdb/bdb_config.h"
 
-std::string BDB::versionString() { return "BDB v0.0.1"; }
+std::string BDB::versionString() { return BDB_NAME " v" BDB_VERSION; }

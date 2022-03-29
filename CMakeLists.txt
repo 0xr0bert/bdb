@@ -7,8 +7,11 @@ project(BDB VERSION 0.0.1 DESCRIPTION "Behaviour-Derived Beliefs")
 add_library(bdb SHARED
     src/bdb.cpp
 )
-
-target_include_directories(bdb PRIVATE include)
+configure_file(include/bdb/bdb_config.h.in include/bdb/bdb_config.h)
+target_include_directories(bdb PRIVATE
+    ${PROJECT_BINARY_DIR}/include
+)
+target_include_directories(bdb PUBLIC include)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
@@ -31,7 +34,7 @@ target_link_libraries(
     gtest_main
     bdb
 )
-target_include_directories(bdb_test PRIVATE include)
+target_include_directories(bdb_test PRIVATE include ${PROJECT_BINARY_DIR}/include)
 
 include(GoogleTest)
 gtest_discover_tests(bdb_test)

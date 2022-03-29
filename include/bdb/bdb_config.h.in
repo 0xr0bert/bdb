@@ -1,3 +1,4 @@
+
 /* BDB, Behaviour-Derived Beliefs.
  * Copyright (C) 2022 Robert Greener.
  *
@@ -13,11 +14,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-#include "bdb/bdb.hpp"
-#include "bdb/bdb_config.h"
-
-#include <gtest/gtest.h>
-
-TEST(BDBNamespace, VersionString) {
-  EXPECT_EQ(BDB::versionString(), "BDB v" BDB_VERSION);
-}
+#ifndef BDB_BDB_CONFIG_H
+#define BDB_BDB_CONFIG_H
+// clang-format off
+#define BDB_VERSION "@BDB_VERSION@"
+#define BDB_NAME "@PROJECT_NAME@"
+// clang-format on
+#endif // BDB_BDB_CONFIG_H
