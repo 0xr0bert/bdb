@@ -36,7 +36,7 @@ TEST(BaseBehaviour, ConstructorWithNameRandomlyGeneratesUUID) {
   EXPECT_NE(b1.getUuid(), b2.getUuid());
 }
 
-TEST(Behaviour, ConstructorWithUUIDWorks) {
+TEST(BaseBehaviour, ConstructorWithUUIDWorks) {
   auto uuid = boost::uuids::random_generator_mt19937()();
   auto b = BDB::BaseBehaviour("B", uuid);
   EXPECT_EQ(b.getName(), "B");
