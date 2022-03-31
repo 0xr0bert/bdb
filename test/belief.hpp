@@ -19,10 +19,18 @@
 
 #include "bdb/belief.hpp"
 
+#include <gmock/gmock.h>
+
 namespace BDB::Testing {
 class MockBelief : public BaseBelief {
 public:
   using BaseBelief::BaseBelief;
+  MOCK_METHOD(const double, getRelationship, (const BDB::BaseBelief *other),
+              (const, override));
+
+  MOCK_METHOD(void, setRelationship,
+              (const BDB::BaseBelief *other, const double relationship),
+              (override));
 };
 } // namespace BDB::Testing
 

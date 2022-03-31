@@ -43,6 +43,29 @@ public:
    * @param uuid The UUID of the belief.
    */
   BaseBelief(const std::string name, const boost::uuids::uuid uuid);
+
+  /**
+   * @brief Destroy the BaseBelief object.
+   */
+  virtual ~BaseBelief() {}
+
+  /**
+   * @brief Get the Relationship object.
+   *
+   * @param other The other belief.
+   * @return const double The relationship.
+   */
+  [[nodiscard("Accessor")]] virtual const double
+  getRelationship(const BaseBelief *other) const = 0;
+
+  /**
+   * @brief Set the Relationship object
+   *
+   * @param other The other belief.
+   * @param relationship The new relationship.
+   */
+  virtual void setRelationship(const BaseBelief *other,
+                               const double relationship) = 0;
 };
 } // namespace BDB
 
