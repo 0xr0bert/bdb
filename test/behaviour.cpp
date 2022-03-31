@@ -14,8 +14,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "behaviour.hpp"
-
 #include "bdb/behaviour.hpp"
 
 #include <boost/uuid/random_generator.hpp>
@@ -24,44 +22,23 @@
 #include <gtest/gtest.h>
 #include <string>
 
-TEST(MockBehaviour, ConstructorWithNameAssignsName) {
+TEST(BaseBehaviour, ConstructorWithNameAssignsName) {
   auto name = "B1";
-  auto b1 = BDB::Testing::MockBehaviour(std::move(name));
-  EXPECT_EQ(b1.name, "B1");
+  auto b1 = BDB::BaseBehaviour(std::move(name));
+  EXPECT_EQ(b1.getName(), "B1");
 }
 
-TEST(MockBehaviour, ConstructorWithNameRandomlyGeneratesUUID) {
-  auto b1 = BDB::Testing::MockBehaviour("B1");
-  auto b2 = BDB::Testing::MockBehaviour("B2");
-  EXPECT_EQ(b1.name, "B1");
-  EXPECT_EQ(b2.name, "B2");
-  EXPECT_NE(b1.uuid, b2.uuid);
-}
-
-TEST(MockBehaviour, ConstructorWithUUIDWorks) {
-  auto uuid = boost::uuids::random_generator_mt19937()();
-  auto b = BDB::Testing::MockBehaviour("B", uuid);
-  EXPECT_EQ(b.name, "B");
-  EXPECT_EQ(b.uuid, uuid);
-}
-
-TEST(Behaviour, ConstructorWithNameAssignsName) {
-  auto name = "B1";
-  auto b1 = BDB::Behaviour(std::move(name));
-  EXPECT_EQ(b1.name, "B1");
-}
-
-TEST(Behaviour, ConstructorWithNameRandomlyGeneratesUUID) {
-  auto b1 = BDB::Behaviour("B1");
-  auto b2 = BDB::Behaviour("B2");
-  EXPECT_EQ(b1.name, "B1");
-  EXPECT_EQ(b2.name, "B2");
-  EXPECT_NE(b1.uuid, b2.uuid);
+TEST(BaseBehaviour, ConstructorWithNameRandomlyGeneratesUUID) {
+  auto b1 = BDB::BaseBehaviour("B1");
+  auto b2 = BDB::BaseBehaviour("B2");
+  EXPECT_EQ(b1.getName(), "B1");
+  EXPECT_EQ(b2.getName(), "B2");
+  EXPECT_NE(b1.getUuid(), b2.getUuid());
 }
 
 TEST(Behaviour, ConstructorWithUUIDWorks) {
   auto uuid = boost::uuids::random_generator_mt19937()();
-  auto b = BDB::Behaviour("B", uuid);
-  EXPECT_EQ(b.name, "B");
-  EXPECT_EQ(b.uuid, uuid);
+  auto b = BDB::BaseBehaviour("B", uuid);
+  EXPECT_EQ(b.getName(), "B");
+  EXPECT_EQ(b.getUuid(), uuid);
 }
