@@ -16,29 +16,30 @@
 
 #include "bdb/belief.hpp"
 
+#include "belief.hpp"
 #include <boost/uuid/random_generator.hpp>
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_generators.hpp>
 #include <gtest/gtest.h>
 #include <string>
 
-TEST(BaseBelief, ConstructorWithNameAssignsName) {
+TEST(MockBelief, ConstructorWithNameAssignsName) {
   auto name = "B1";
-  auto b1 = BDB::BaseBelief(std::move(name));
+  auto b1 = BDB::Testing::MockBelief(std::move(name));
   EXPECT_EQ(b1.getName(), "B1");
 }
 
-TEST(BaseBelief, ConstructorWithNameRandomlyGeneratesUUID) {
-  auto b1 = BDB::BaseBelief("B1");
-  auto b2 = BDB::BaseBelief("B2");
+TEST(MockBelief, ConstructorWithNameRandomlyGeneratesUUID) {
+  auto b1 = BDB::Testing::MockBelief("B1");
+  auto b2 = BDB::Testing::MockBelief("B2");
   EXPECT_EQ(b1.getName(), "B1");
   EXPECT_EQ(b2.getName(), "B2");
   EXPECT_NE(b1.getUuid(), b2.getUuid());
 }
 
-TEST(BaseBelief, ConstructorWithUUIDWorks) {
+TEST(MockBelief, ConstructorWithUUIDWorks) {
   auto uuid = boost::uuids::random_generator_mt19937()();
-  auto b = BDB::BaseBelief("B", uuid);
+  auto b = BDB::Testing::MockBelief("B", uuid);
   EXPECT_EQ(b.getName(), "B");
   EXPECT_EQ(b.getUuid(), uuid);
 }
