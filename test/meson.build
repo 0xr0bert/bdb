@@ -5,7 +5,8 @@ gmock_dep = gtest_proj.get_variable('gmock_dep')
 bdb_test_srcs = [
     'bdb.cpp',
     'behaviour.cpp',
-    'named.cpp'
+    'named.cpp',
+    'uuidd.cpp'
 ]
 
 bdb_test = executable(

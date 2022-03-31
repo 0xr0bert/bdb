@@ -3,7 +3,8 @@ boost_dep = dependency('boost')
 bdb_srcs = [
     'bdb.cpp',
     'behaviour.cpp',
-    'named.cpp'
+    'named.cpp',
+    'uuidd.cpp'
 ]
 bdb = library(
     'bdb',
